@@ -424,8 +424,13 @@ function getIdentityMatrix(/* n */) {
  *    getIndicesOfOddNumbers([2, 4, 6, 8, 10]) => []
  *    getIndicesOfOddNumbers([11, 22, 33, 44, 55]) => [0, 2, 4]
  */
-function getIndicesOfOddNumbers(/* numbers */) {
-  throw new Error('Not implemented');
+function getIndicesOfOddNumbers(numbers) {
+  return numbers
+    .map((num, index) => {
+      return { num, index };
+    })
+    .filter((elem) => elem.num % 2 !== 0)
+    .map((elem) => elem.index);
 }
 
 /**
@@ -539,8 +544,21 @@ function shiftArray(/* arr, n */) {
  *   sortDigitNamesByNumericOrder([ 'nine','eight','nine','eight' ]) => [ 'eight','eight','nine','nine']
  *   sortDigitNamesByNumericOrder([ 'one','one','one','zero' ]) => [ 'zero','one','one','one' ]
  */
-function sortDigitNamesByNumericOrder(/* arr */) {
-  throw new Error('Not implemented');
+function sortDigitNamesByNumericOrder(arr) {
+  const numMap = [
+    [0, 'zero'],
+    [1, 'one'],
+    [2, 'two'],
+    [3, 'three'],
+    [4, 'four'],
+    [5, 'five'],
+    [6, 'six'],
+    [7, 'seven'],
+    [8, 'eight'],
+    [9, 'nine'],
+  ];
+
+  return arr[numMap];
 }
 
 /**
@@ -562,8 +580,21 @@ function sortDigitNamesByNumericOrder(/* arr */) {
  *   swapHeadAndTail([]) => []
  *
  */
-function swapHeadAndTail(/* arr */) {
-  throw new Error('Not implemented');
+function swapHeadAndTail(arr) {
+  if (arr.length === 1) {
+    return arr;
+  }
+
+  if (arr.length % 2 === 0) {
+    return [...arr.slice(arr.length / 2), ...arr.slice(0, arr.length / 2)];
+  }
+
+  const middleIndex = Math.floor(arr.length / 2);
+  return [
+    ...arr.slice(middleIndex + 1, arr.length, middleIndex),
+    arr[middleIndex],
+    ...arr.slice(0, middleIndex),
+  ];
 }
 
 module.exports = {
